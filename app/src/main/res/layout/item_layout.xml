@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <TextView
+            android:id="@+id/tvcita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cita"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvnombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Nombre" />
+        <TextView
+            android:id="@+id/tvservicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Servicio" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvfecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="110dp"
+                android:text="Fecha" />
+
+            <TextView
+                android:id="@+id/tvhora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora" />
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/tvtotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total" />
+        <TextView
+            android:id="@+id/tvfpago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forma de pago" />
+
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Saloon </string>
+    <string name="bienvenid">Bienvenid@</string>
+    <string name="ver_citas">Citas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">No hay registros</string>
+    <string name="clientes">Clientes</string>
+    <string name="citas">Citas</string>
+</resources>
