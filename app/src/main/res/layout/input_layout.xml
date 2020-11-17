@@ -8,11 +8,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nueva Cita"
+        android:text="@string/nueva_cita"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:textSize="20dp"/>
+        android:textSize="20sp"/>
 
     <EditText
         android:layout_marginTop="50dp"
@@ -24,7 +24,8 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Servicio"/>
+        android:textStyle="bold"
+        android:text="@string/servicio"/>
 
     <RadioGroup
         android:id="@+id/rb_group"
@@ -37,13 +38,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Corte de pelo" />
+            android:text="@string/corte_de_pelo" />
 
         <RadioButton
             android:id="@+id/rbtratamiento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tratamiento capilar" />
+            android:text="@string/tratamiento_capilar" />
 
     </RadioGroup>
 
@@ -67,7 +68,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha" />
+            android:text="@string/fecha" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,7 +90,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hora" />
+            android:text="@string/hora" />
     </LinearLayout>
 
 
@@ -105,7 +106,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="Forma de pago"/>
+        android:textStyle="bold"
+        android:hint="@string/forma_de_pago"/>
 
     <RadioGroup
         android:id="@+id/rg2_group"
@@ -117,13 +119,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Tarjeta"/>
+            android:text="@string/tarjeta"/>
 
         <RadioButton
             android:id="@+id/rb2_efectivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Efectivo"/>
+            android:text="@string/efectivo"/>
     </RadioGroup>
 
 
@@ -131,7 +133,7 @@
         android:id="@+id/btnguardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar"
+        android:text="@string/guardar"
         android:layout_marginTop="30dp"/>
 
 

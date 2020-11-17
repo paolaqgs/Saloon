@@ -13,7 +13,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/skype"
-            android:layout_marginBottom="50dp"/>
+            android:layout_marginBottom="50dp"
+            android:contentDescription="@string/logo" />
 
         <TextView
             android:id="@+id/textView"

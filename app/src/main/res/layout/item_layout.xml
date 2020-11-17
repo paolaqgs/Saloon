@@ -15,7 +15,7 @@
             android:id="@+id/tvcita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cita"
+            android:text="@string/cita"
             android:textStyle="bold" />
 
         <TextView
@@ -40,7 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="110dp"
-                android:text="Fecha" />
+                android:text="Fecha"
+                android:layout_marginEnd="110dp" />
 
             <TextView
                 android:id="@+id/tvhora"
@@ -53,7 +54,8 @@
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:text="Hr" />
+                android:text="@string/hr"
+                android:layout_marginStart="5dp" />
 
 
         </LinearLayout>
@@ -67,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:textStyle="bold"
-                android:text="Total: $" />
+                android:text="@string/totals" />
             <TextView
                 android:id="@+id/tvtotal"
                 android:layout_width="wrap_content"
@@ -90,12 +92,14 @@
                 android:id="@+id/ivEdit"
                 android:layout_width="193dp"
                 android:layout_height="40dp"
-                android:src="@drawable/edit"/>
+                android:src="@drawable/edit"
+                android:contentDescription="icono editar" />
             <ImageView
                 android:id="@+id/ivDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:src="@drawable/delete"/>
+                android:src="@drawable/delete"
+                android:contentDescription="icono borrar" />
         </LinearLayout>
     </LinearLayout>
 
