@@ -17,8 +17,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,17 +26,16 @@
 
                 <EditText
                     android:id="@+id/input_min"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:enabled="false"
-                    android:hint="@string/min"
-                    android:importantForAutofill="no" />
+                    android:hint="Min"/>
                 <Button
                     android:id="@+id/btnmin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/fecha"/>
+                    android:text="Fecha"/>
 
             </LinearLayout>
             <LinearLayout
@@ -48,23 +46,22 @@
 
                 <EditText
                     android:id="@+id/input_max"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:enabled="false"
-                    android:hint="@string/max"
-                    android:importantForAutofill="no" />
+                    android:hint="Max"/>
                 <Button
                     android:id="@+id/btnmax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/fecha"/>
+                    android:text="Fecha"/>
             </LinearLayout>
         </LinearLayout>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/buscar"
+            android:text="Buscar"
             android:enabled="false"
             android:id="@+id/btnbuscar"
             android:layout_gravity="end"/>
@@ -73,26 +70,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:orientation="horizontal"
-            android:layout_marginStart="20dp">
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:text="@string/ingresos"/>
+                android:text="Ingresos: $ "/>
             <TextView
                 android:id="@+id/ingresos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginLeft="5dp"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:textStyle="bold"
-                android:text="@string/cambia"
-                android:layout_marginStart="5dp" />
+                android:text="cambia"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -114,7 +109,6 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="20dp"
         android:tint="@android:color/white"
-        android:layout_alignParentRight="true"
-        android:contentDescription="@string/boton_flotante_para_agregar_cita" />
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

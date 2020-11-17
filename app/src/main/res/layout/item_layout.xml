@@ -15,7 +15,7 @@
             android:id="@+id/tvcita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cita"
+            android:text="Cita"
             android:textStyle="bold" />
 
         <TextView
@@ -23,12 +23,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/nombre" />
+            android:text="Nombre" />
         <TextView
             android:id="@+id/tvservicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/servicio" />
+            android:text="Servicio" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,22 +40,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="110dp"
-                android:text="@string/fecha"
-                android:layout_marginEnd="110dp" />
+                android:text="Fecha" />
 
             <TextView
                 android:id="@+id/tvhora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hora" />
+                android:text="Hora" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:text="@string/hr"
-                android:layout_marginStart="5dp" />
+                android:text="Hr" />
 
 
         </LinearLayout>
@@ -67,19 +65,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:textStyle="bold"
-                android:text="@string/totals" />
+                android:text="Total: $" />
             <TextView
                 android:id="@+id/tvtotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_0"/>
+                android:text="0"/>
         </LinearLayout>
         <TextView
             android:id="@+id/tvfpago"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/forma_de_pago" />
+            android:text="Forma de pago" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,14 +90,12 @@
                 android:id="@+id/ivEdit"
                 android:layout_width="193dp"
                 android:layout_height="40dp"
-                android:src="@drawable/edit"
-                android:contentDescription="@string/icono_editar" />
+                android:src="@drawable/edit"/>
             <ImageView
                 android:id="@+id/ivDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:src="@drawable/delete"
-                android:contentDescription="@string/icono_borrar" />
+                android:src="@drawable/delete"/>
         </LinearLayout>
     </LinearLayout>
 

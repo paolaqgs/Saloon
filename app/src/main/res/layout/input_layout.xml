@@ -8,24 +8,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nueva_cita"
+        android:text="Nueva Cita"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:textSize="20sp"/>
+        android:textSize="20dp"/>
 
     <EditText
         android:layout_marginTop="50dp"
         android:id="@+id/etNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nombre"
-        android:importantForAutofill="no" />
+        android:hint="Nombre"/>
     <TextView
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/servicio"/>
+        android:text="Servicio"/>
 
     <RadioGroup
         android:id="@+id/rb_group"
@@ -38,13 +37,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/corte_de_pelo" />
+            android:text="Corte de pelo" />
 
         <RadioButton
             android:id="@+id/rbtratamiento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tratamiento_capilar" />
+            android:text="Tratamiento capilar" />
 
     </RadioGroup>
 
@@ -56,20 +55,19 @@
 
         <EditText
             android:id="@+id/etfecha"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:enabled="false"
-            android:text="@string/fecha"
-            android:importantForAutofill="no" />
+            android:text="Fecha" />
 
         <Button
             android:id="@+id/btnfecha"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fecha" />
+            android:text="Fecha" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,20 +77,19 @@
 
         <EditText
             android:id="@+id/ethora"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:enabled="false"
-            android:text="@string/hora"
-            android:importantForAutofill="no" />
+            android:text="Hora" />
 
         <Button
             android:id="@+id/btnhora"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hora" />
+            android:text="Hora" />
     </LinearLayout>
 
 
@@ -102,14 +99,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="@string/total"
-        android:importantForAutofill="no" />
+        android:hint="Total" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="@string/forma_de_pago"/>
+        android:hint="Forma de pago"/>
 
     <RadioGroup
         android:id="@+id/rg2_group"
@@ -121,13 +117,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/tarjeta"/>
+            android:text="Tarjeta"/>
 
         <RadioButton
             android:id="@+id/rb2_efectivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/efectivo"/>
+            android:text="Efectivo"/>
     </RadioGroup>
 
 
@@ -135,7 +131,7 @@
         android:id="@+id/btnguardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/guardar"
+        android:text="Guardar"
         android:layout_marginTop="30dp"/>
 
 
