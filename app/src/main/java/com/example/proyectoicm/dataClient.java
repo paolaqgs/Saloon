@@ -1,16 +1,15 @@
 package com.example.proyectoicm;
 
 public class dataClient {
-    private String id;
 
-    private String cliente, servicio, formapago;
+    private String cliente, servicio, formapago, fecha , hora;
     private int costo;
-    private long fecha, hora;
+    //private long fecha, hora;
 
     public dataClient() {
     }
 
-    public dataClient(String cliente, String servicio, String formapago, int costo, long fecha, long hora) {
+    public dataClient(String cliente, String servicio, String formapago, int costo, String fecha, String hora) {
         this.cliente = cliente;
         this.servicio = servicio;
         this.formapago = formapago;
@@ -35,11 +34,11 @@ public class dataClient {
         return costo;
     }
 
-    public long getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public long getHora() {
+    public String getHora() {
         return hora;
     }
 }

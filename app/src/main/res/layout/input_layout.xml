@@ -83,7 +83,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:enabled="false"
-            android:text="Hora" />
+            android:hint="Hora" />
 
         <Button
             android:id="@+id/btnhora"

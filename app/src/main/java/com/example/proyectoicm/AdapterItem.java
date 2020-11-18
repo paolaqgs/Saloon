@@ -23,7 +23,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
@@ -37,17 +40,21 @@ import java.util.Map;
 
 public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder> {
     Context context;
+    AlertDialog builderAlert;
+    DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     ArrayList<dataClient> dataClientArrayList;
-    Locale id = new Locale("es", "MX");
+    ArrayList<String> idsArrayList;
+    //Locale id = new Locale("in", "ID");
     Calendar calendar = Calendar.getInstance();
     SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("dd-MMMM-YYYY");
     SimpleDateFormat horaDF = new SimpleDateFormat("HH:mm");
     Date fecha_seleccionada;
     Date hora_seleccionada;
 
-    public AdapterItem(Context context, ArrayList<dataClient> dataClientArrayList) {
+    public AdapterItem(Context context, ArrayList<dataClient> dataClientArrayList, ArrayList<String> idsArrayList) {
         this.context = this.context;
         this.dataClientArrayList = dataClientArrayList;
+        this.idsArrayList = idsArrayList;
     }
 
     @NonNull
@@ -60,12 +67,12 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
     @Override
     public void onBindViewHolder(@NonNull AdapterItem.ItemViewHolder holder, int position) {
         holder.viewBind(dataClientArrayList.get(position));
+
         holder.ivedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final DialogPlus dialogPlus = DialogPlus.newDialog(holder.tvnombre.getContext())
                         .setContentHolder(new ViewHolder(R.layout.dialogcontent))
-                        .setExpanded(true, 2200)
                         .create();
                 View myview = dialogPlus.getHolderView();
                 EditText Nombre = myview.findViewById(R.id.editnombre);
@@ -78,23 +85,21 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
                 RadioButton rbtratamiento = myview.findViewById(R.id.rbtratamiento);
                 RadioButton rbtarjeta = myview.findViewById(R.id.rb2_tarjeta);
                 RadioButton rbefectivo = myview.findViewById(R.id.rb2_efectivo);
-                Button ebtnfecha = myview.findViewById(R.id.editbtnfecha);
-                Button ebtnhora = myview.findViewById(R.id.editbtnhora);
                 Button editar = myview.findViewById(R.id.btnedit);
                 Nombre.setText(dataClientArrayList.get(position).getCliente().toString());
                 Total.setText(String.valueOf(dataClientArrayList.get(position).getCosto()));
-                Fecha.setText(simpleDateFormat.format(dataClientArrayList.get(position).getFecha()));
-                Hora.setText(horaDF.format(dataClientArrayList.get(position).getHora()));
+                Fecha.setText(dataClientArrayList.get(position).getFecha());  //simpleDateFormat.format(dataClientArrayList.get(position).getFecha())
+                Hora.setText(dataClientArrayList.get(position).getHora());
                 String servicio = dataClientArrayList.get(position).getServicio(); //regresa servicio string yo quiero el id para checked radiobutton
                 String pago = dataClientArrayList.get(position).getFormapago(); //regresa tipopago string yo quiero id
 
 
-                if (servicio.equals(rbcorte.getText().toString())) {
+                if (rbcorte.getText().toString().equals(servicio)) {
                     rbcorte.setChecked(true);
                 } else {
                     rbtratamiento.setChecked(true);
                 }
-                if (pago.equals(rbtarjeta.getText().toString())) {
+                if (rbtarjeta.getText().toString().equals(pago)) {
                     rbtarjeta.setChecked(true);
                 }  else {
                     rbefectivo.setChecked(true);
@@ -118,62 +123,25 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
                         } else {
                             formapago = rbefectivo.getText().toString();
                         }
-                        //BOTONES FECHA/HORA no sirven ruta para guardar map tampoco jala
-                        ebtnfecha.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
-                                    @Override
-                                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMoth) {
-                                        calendar.set(year, month, dayOfMoth);
-                                        Fecha.setText(simpleDateFormat.format(calendar.getTime()));
-                                        fecha_seleccionada = calendar.getTime();
-                                    }
-                                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-                                datePickerDialog.show();
-                            }
-                        });
-
-                        ebtnhora.setOnClickListener(new View.OnClickListener(){
-                            public void onClick(View view) {
-                                int hora = calendar.get(Calendar.HOUR_OF_DAY);
-                                int min = calendar.get(Calendar.MINUTE);
-                                TimePickerDialog timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
-                                    @Override
-                                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                                        Hora.setText(horaDF.format(calendar.getTime()));
-                                        hora_seleccionada = calendar.getTime();
-                                    }
-                                }, hora, min, true);
-                                timePickerDialog.show();
-                            }
-                        });
-
+                        int costo = Integer.parseInt(Total.getText().toString());
                         String NOMBRE = Nombre.getText().toString();
                         Map<String, Object> map = new HashMap<>();
                         map.put("cliente", NOMBRE);
-                        map.put("servicios", servicio);
+                        map.put("servicio", servicio );
                         map.put("formapago", formapago );
-                        map.put("costo", Integer.parseInt(Total.getText().toString())); //string del edittx parse int
-                        map.put("fecha", fecha_seleccionada.getTime());
-                        map.put("hora", hora_seleccionada.getTime());
-                        //String x = FirebaseDatabase.getInstance().getReference().child("cliente").getRef().getKey();
+                        map.put("costo", costo ); //string del edittx parse int
+                        map.put("fecha", "1606324818953");
+                        map.put("hora", "1606324818953");
 
-                        FirebaseDatabase.getInstance().getReference().child("cliente")
 
-                                .child(dataClientArrayList.get(position).toString()).updateChildren(map)
+                        //uno mas abajo
+                        // ES LA LLAVE idsArrayList.get(position));
+                       // Nombre.setText(idsArrayList.get(position));
 
-                                .addOnSuccessListener(new OnSuccessListener<Void>(){
-                                    public void onSuccess(Void avoid){
-                                        dialogPlus.dismiss();
+                        //database.child("cliente").child(dataClientArrayList.get(position).getCliente().toString()).updateChildren(map)
+                        database.child("cliente").child(idsArrayList.get(position)).updateChildren(map);
 
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        dialogPlus.dismiss();
-                                }});
+
                     }
                 });
             }
@@ -185,9 +153,10 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
         return dataClientArrayList.size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView tvnombre, tvservicio, tvtotal, tvfpago, tvhora, tvfecha;
         ImageView ivedit, ivdelete;
+        Button editbtnfecha, editbtnhora;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -198,20 +167,21 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
             tvfecha = itemView.findViewById(R.id.tvfecha);
             tvhora = itemView.findViewById(R.id.tvhora);
 
+            editbtnfecha = itemView.findViewById(R.id.editbtnfecha);
+            editbtnhora = itemView.findViewById(R.id.editbtnhora);
+
             ivedit =  itemView.findViewById(R.id.ivEdit);
             ivdelete = itemView.findViewById(R.id.ivDelete);
-
         }
 
         public void viewBind(dataClient dataClient) {
+
             tvnombre.setText(dataClient.getCliente());
             tvservicio.setText(dataClient.getServicio());
             tvtotal.setText(String.valueOf(dataClient.getCosto()));
             tvfpago.setText(dataClient.getFormapago());
-            tvfecha.setText(simpleDateFormat.format(dataClient.getFecha()));
-            tvhora.setText(horaDF.format(dataClient.getHora()));
-
-
+            tvfecha.setText(dataClient.getFecha());
+            tvhora.setText(dataClient.getHora());
         }
     }
 }

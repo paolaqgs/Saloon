@@ -5,7 +5,6 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.service.autofill.Dataset;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -36,22 +36,26 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
 public class VerCActivity extends AppCompatActivity {
     EditText input_min, input_max;
+    TextView ingresos;
     Button btnmin, btnmax, btnbuscar;
     FloatingActionButton fabagregar;
     AlertDialog builderAlert;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     Context context;
     ArrayList<dataClient> list = new ArrayList<>();
+    ArrayList<String> ids = new ArrayList<>();
+    ArrayList<Integer> ingresostot = new ArrayList<>();
     AdapterItem adapterItem;
     RecyclerView recyclerView;
     LayoutInflater layoutInflater;
     View showInput;
     Calendar calendar = Calendar.getInstance();
-    Locale id = new Locale("es", "MX");
+    //Locale id = new Locale("in", "ID");
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-YYYY");
     SimpleDateFormat horaDF = new SimpleDateFormat("HH:mm");
 
@@ -65,6 +69,14 @@ public class VerCActivity extends AppCompatActivity {
         fabagregar = findViewById(R.id.fabagregar);
         input_min = findViewById(R.id.input_min);
         input_max = findViewById(R.id.input_max);
+        ingresos = findViewById(R.id.tvingresos);
+        int sum = 0 ;
+        for (int i = 0 ; i < ingresostot.size(); i++){
+            sum += ingresostot.get(i);
+        }
+
+        ingresos.setText(ingresostot.toString());
+
         btnmin = findViewById(R.id.btnmin);
         btnmax = findViewById(R.id.btnmax);
         btnbuscar = findViewById(R.id.btnbuscar);
@@ -77,7 +89,7 @@ public class VerCActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMoth) {
                         calendar.set(year, month, dayOfMoth);
-                        input_min.setText(simpleDateFormat.format(calendar.getTime()));
+                        input_min.setText(simpleDateFormat.format(calendar.getTime()).toString());
                         fecha_min = calendar.getTime();
                         String input1 = input_min.getText().toString();
                         String input2 = input_max.getText().toString();
@@ -100,7 +112,7 @@ public class VerCActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMoth) {
                         calendar.set(year, month, dayOfMoth);
-                        input_max.setText(simpleDateFormat.format(calendar.getTime()));
+                        input_max.setText(simpleDateFormat.format(calendar.getTime()).toString());
                         fecha_max = calendar.getTime();
                         String input1 = input_max.getText().toString();
                         String input2 = input_min.getText().toString();
@@ -119,7 +131,7 @@ public class VerCActivity extends AppCompatActivity {
         btnbuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Query query = database.child("cliente").orderByChild("fecha").startAt(fecha_min.getTime()).endAt(fecha_max.getTime());
+                Query query = database.child("cliente").orderByChild("fecha").startAt(input_min.getText().toString()).endAt(input_max.getText().toString());
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -143,14 +155,16 @@ public class VerCActivity extends AppCompatActivity {
             }
         });
         showData();
+
+
+
     }
 
     EditText etnombre, etcosto, etfecha, ethora;
     Button btnfecha, btnhora,  btnguardar;
     RadioGroup rb_group, rb2_group;
     RadioButton radioButton, radioButton2;
-    Date fecha_seleccionada;
-    Date hora_seleccionada;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -191,13 +205,14 @@ public class VerCActivity extends AppCompatActivity {
                     int total = Integer.parseInt(costo);
                     int formapago = rb2_group.getCheckedRadioButtonId();
                     radioButton2 = showInput.findViewById(formapago);
-                    database.child("cliente").child(nombre).setValue(new dataClient(
+                    String KEY = database.child("cliente").push().getKey(); //LLAVE
+                    database.child("cliente").child(KEY).setValue(new dataClient(
                             nombre,
                             radioButton.getText().toString(),
                             radioButton2.getText().toString(),
                             total,
-                            fecha_seleccionada.getTime(),
-                            hora_seleccionada.getTime()
+                            etfecha.getText().toString(),
+                            ethora.getText().toString()
                     )).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -222,8 +237,8 @@ public class VerCActivity extends AppCompatActivity {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMoth) {
                             calendar.set(year, month, dayOfMoth);
-                            etfecha.setText(simpleDateFormat.format(calendar.getTime()));
-                            fecha_seleccionada = calendar.getTime();
+                            etfecha.setText(simpleDateFormat.format(calendar.getTime()).toString());
+                            //fecha_seleccionada = calendar.getTime();
                         }
                     }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                     datePickerDialog.show();
@@ -236,11 +251,11 @@ public class VerCActivity extends AppCompatActivity {
                 int min = calendar.get(Calendar.MINUTE);
                 TimePickerDialog timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                        ethora.setText(horaDF.format(calendar.getTime()));
-                        hora_seleccionada = calendar.getTime();
+                    public void onTimeSet(TimePicker timePicker, int hora, int min) {
+                        ethora.setText(horaDF.format(calendar.getTime()).toString());
+                        //hora_seleccionada = calendar.getTime();
                     }
-                }, hora, min, true);
+                }, hora, min, false);
                 timePickerDialog.show();
             }
         });
@@ -263,11 +278,16 @@ public class VerCActivity extends AppCompatActivity {
 
     private void showListener(DataSnapshot snapshot) {
         list.clear();
+        ids.clear();
+        ingresostot.clear();
         for (DataSnapshot item : snapshot.getChildren()){
             dataClient cliente = item.getValue(dataClient.class);
             list.add(cliente);
+            ids.add(item.getKey().toString());
+            ingresostot.add(cliente.getCosto());
+
         }
-        adapterItem = new AdapterItem(context, list);
+        adapterItem = new AdapterItem(context, list, ids);
         recyclerView.setAdapter(adapterItem);
     }
 }
