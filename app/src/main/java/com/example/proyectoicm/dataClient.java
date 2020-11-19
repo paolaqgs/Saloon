@@ -4,7 +4,6 @@ public class dataClient {
 
     private String cliente, servicio, formapago, fecha , hora;
     private int costo;
-    //private long fecha, hora;
 
     public dataClient() {
     }
