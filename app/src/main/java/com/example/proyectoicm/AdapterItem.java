@@ -3,6 +3,7 @@ package com.example.proyectoicm;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,9 +45,9 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     ArrayList<dataClient> dataClientArrayList;
     ArrayList<String> idsArrayList;
-    //Locale id = new Locale("in", "ID");
+    Locale id = new Locale("in", "ID");
     Calendar calendar = Calendar.getInstance();
-    SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("dd-MMMM-YYYY");
+    SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("dd-MMMM-yyyy");
     SimpleDateFormat horaDF = new SimpleDateFormat("HH:mm");
     Date fecha_seleccionada;
     Date hora_seleccionada;
@@ -86,9 +87,13 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
                 RadioButton rbtarjeta = myview.findViewById(R.id.rb2_tarjeta);
                 RadioButton rbefectivo = myview.findViewById(R.id.rb2_efectivo);
                 Button editar = myview.findViewById(R.id.btnedit);
-                Nombre.setText(dataClientArrayList.get(position).getCliente().toString());
+
+                Button btnfecha = myview.findViewById(R.id.editbtnfecha);
+                Button btnhora = myview.findViewById(R.id.editbtnhora);
+
+                Nombre.setText(dataClientArrayList.get(position).getCliente());
                 Total.setText(String.valueOf(dataClientArrayList.get(position).getCosto()));
-                Fecha.setText(dataClientArrayList.get(position).getFecha());  //simpleDateFormat.format(dataClientArrayList.get(position).getFecha())
+                Fecha.setText(dataClientArrayList.get(position).getFecha());
                 Hora.setText(dataClientArrayList.get(position).getHora());
                 String servicio = dataClientArrayList.get(position).getServicio(); //regresa servicio string yo quiero el id para checked radiobutton
                 String pago = dataClientArrayList.get(position).getFormapago(); //regresa tipopago string yo quiero id
@@ -130,22 +135,53 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
                         map.put("servicio", servicio );
                         map.put("formapago", formapago );
                         map.put("costo", costo ); //string del edittx parse int
-                        map.put("fecha", "1606324818953");
-                        map.put("hora", "1606324818953");
-
-
-                        //uno mas abajo
-                        // ES LA LLAVE idsArrayList.get(position));
-                       // Nombre.setText(idsArrayList.get(position));
-
-                        //database.child("cliente").child(dataClientArrayList.get(position).getCliente().toString()).updateChildren(map)
-                        database.child("cliente").child(idsArrayList.get(position)).updateChildren(map);
-
-
+                        map.put("fecha", Fecha.getText().toString());
+                        map.put("hora", Hora.getText().toString());
+                        database.child("cliente").child(idsArrayList.get(position)).updateChildren(map)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                dialogPlus.dismiss();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                dialogPlus.dismiss();
+                            }
+                        });
+                    }
+                });
+                btnfecha.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(holder.tvnombre.getContext());
+                        builder.setTitle("FECHA");
+                        builder.setMessage("porque no entra esta pendejada?");
                     }
                 });
             }
         });
+        holder.ivdelete.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(holder.tvnombre.getContext());
+            builder.setTitle("Borrar");
+            builder.setMessage("Esta seguro de borrar la cita?");
+
+            builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    database.child("cliente").child(idsArrayList.get(position)).removeValue();
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+            builder.show();
+        });
+
+
     }
 
     @Override

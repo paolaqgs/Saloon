@@ -55,8 +55,8 @@ public class VerCActivity extends AppCompatActivity {
     LayoutInflater layoutInflater;
     View showInput;
     Calendar calendar = Calendar.getInstance();
-    //Locale id = new Locale("in", "ID");
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-YYYY");
+    Locale id = new Locale("in", "ID");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
     SimpleDateFormat horaDF = new SimpleDateFormat("HH:mm");
 
     Date fecha_min, fecha_max;
@@ -94,11 +94,7 @@ public class VerCActivity extends AppCompatActivity {
                         String input1 = input_min.getText().toString();
                         String input2 = input_max.getText().toString();
 
-                        if (input1.isEmpty() && input2.isEmpty()){
-                            btnbuscar.setEnabled(false);
-                        }else {
-                            btnbuscar.setEnabled(true);
-                        }
+                        btnbuscar.setEnabled(!input1.isEmpty() || !input2.isEmpty());
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
@@ -117,11 +113,7 @@ public class VerCActivity extends AppCompatActivity {
                         String input1 = input_max.getText().toString();
                         String input2 = input_min.getText().toString();
 
-                        if (input1.isEmpty() && input2.isEmpty()){
-                            btnbuscar.setEnabled(false);
-                        }else {
-                            btnbuscar.setEnabled(true);
-                        }
+                        btnbuscar.setEnabled(!input1.isEmpty() || !input2.isEmpty());
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
@@ -247,15 +239,16 @@ public class VerCActivity extends AppCompatActivity {
 
         btnhora.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-                int hora = calendar.get(Calendar.HOUR_OF_DAY);
-                int min = calendar.get(Calendar.MINUTE);
+                //int hora = calendar.get(Calendar.HOUR_OF_DAY);
+                //int min = calendar.get(Calendar.MINUTE);
                 TimePickerDialog timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hora, int min) {
-                        ethora.setText(horaDF.format(calendar.getTime()).toString());
+                        calendar.set(hora,min);
+                        ethora.setText(hora+":"+min);
                         //hora_seleccionada = calendar.getTime();
                     }
-                }, hora, min, false);
+                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
                 timePickerDialog.show();
             }
         });

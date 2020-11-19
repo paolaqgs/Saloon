@@ -24,5 +24,6 @@
     <string name="buscar">Buscar</string>
     <string name="ingresos">Ingresos: $</string>
     <string name="logo">logo</string>
+    <string name="total">Total</string>
     <string name="nombre">Nombre</string>
 </resources>
