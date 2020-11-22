@@ -7,17 +7,19 @@
     tools:context=".VerCActivity">
 
     <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/header"
+        android:background="#F2F2F2"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_marginTop="20dp"
-
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,14 +32,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:enabled="false"
-                    android:hint="Min"/>
+                    android:hint="Min" />
+
                 <Button
                     android:id="@+id/btnmin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/fecha"/>
+                    android:text="@string/fecha"
+                    app:backgroundTint="#D9725B" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,68 +55,81 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:enabled="false"
-                    android:hint="Max"/>
+                    android:hint="Max" />
+
                 <Button
                     android:id="@+id/btnmax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/fecha"/>
+                    android:text="@string/fecha"
+                    app:backgroundTint="#D9725B" />
             </LinearLayout>
         </LinearLayout>
+
         <Button
+            android:id="@+id/btnbuscar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/buscar"
+            android:layout_gravity="end"
             android:enabled="false"
-            android:id="@+id/btnbuscar"
-            android:layout_gravity="end"/>
+            android:text="@string/buscar"
+            app:backgroundTint="#F2B872" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:orientation="horizontal"
-            android:layout_marginStart="20dp">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:gravity="center"
                 android:layout_gravity="center"
-                android:text="@string/ingresos"/>
+                android:gravity="center"
+                android:text="@string/ingresos"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tvingresos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:gravity="center"
                 android:hint="cambia"
-                android:layout_marginStart="5dp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_below="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:background="#F2F2F2"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_layout"/>
+        tools:listitem="@layout/item_layout" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabagregar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_input_add"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="20dp"
-        android:tint="@android:color/white"
         android:layout_alignParentRight="true"
-        android:contentDescription="boton flotante agregar cita" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="boton flotante agregar cita"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@android:color/white"
+        app:backgroundTint="#6872A6" />
 
 </RelativeLayout>

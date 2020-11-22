@@ -10,39 +10,48 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
+            android:layout_weight="5"
+            android:background="#D9725B"
             android:gravity="center"
-            android:layout_weight="5">
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/skype"
-                android:contentDescription="@string/logo" />
+                android:contentDescription="@string/logo"
+                app:srcCompat="@drawable/skype" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
+            android:layout_weight="0.5"
+            android:background="#D9725B"
             android:gravity="center"
-            android:layout_weight="0.5">
+            android:orientation="vertical">
+
             <ProgressBar
                 android:id="@+id/splashProgress"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
+            android:layout_weight="0.5"
+            android:background="#D9725B"
             android:gravity="center"
-            android:layout_weight="0.5">
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
