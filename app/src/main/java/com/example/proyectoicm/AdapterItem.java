@@ -180,8 +180,6 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
             });
             builder.show();
         });
-
-
     }
 
     @Override

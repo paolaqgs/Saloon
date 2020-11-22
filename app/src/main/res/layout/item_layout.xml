@@ -80,7 +80,7 @@
             android:id="@+id/tvfpago"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forma de pago" />
+            android:text="@string/forma_de_pago" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,13 +93,13 @@
                 android:layout_width="193dp"
                 android:layout_height="40dp"
                 android:src="@drawable/edit"
-                android:contentDescription="icono editar" />
+                android:contentDescription="@string/icono_editar" />
             <ImageView
                 android:id="@+id/ivDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:src="@drawable/delete"
-                android:contentDescription="icono borrar" />
+                android:contentDescription="@string/icono_borrar" />
         </LinearLayout>
     </LinearLayout>
 

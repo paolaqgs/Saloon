@@ -1,53 +1,57 @@
 package com.example.proyectoicm;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 
-public class AdapterCliente extends RecyclerView.Adapter<AdapterCliente.ViewHolder> {
+public class AdapterCliente extends RecyclerView.Adapter<AdapterCliente.ItemViewHolder> {
+    ArrayList<dataClient> dataClientArrayList;
+    Context context;
 
-    ArrayList<String> clientes;
-    public AdapterCliente(ArrayList<String> clientes){
-
+    public AdapterCliente(Context context, ArrayList<dataClient> dataClientArrayList) {
+        this.context = this.context;
+        this.dataClientArrayList = dataClientArrayList;
     }
+
+
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_clientes, parent, false);
-
-        return new ViewHolder(view);
+    public AdapterCliente.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.clientes_lista, parent, false);
+        return new ItemViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String Cliente = clientes.get(position);
-        holder.tvclientes.setText(Cliente.toString());
-
-
+    public void onBindViewHolder(@NonNull AdapterCliente.ItemViewHolder holder, int position) {
+        holder.viewBind(dataClientArrayList.get(position));
     }
+
+
 
     @Override
     public int getItemCount() {
-        return clientes.size();
+        return dataClientArrayList.size();
     }
 
-    public class  ViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvclientes;
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
+        TextView tvcliente;
+        public ItemViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvcliente = itemView.findViewById(R.id.tvcliente);
+        }
 
-        public View view;
-
-        public ViewHolder(View view){
-            super(view);
-            this.view = view ;
-            this.tvclientes =  view.findViewById(R.id.tvcliente);
-
+        public void viewBind(dataClient dataClient) {
+            tvcliente.setText(dataClient.getCliente());
         }
     }
+
+
 }

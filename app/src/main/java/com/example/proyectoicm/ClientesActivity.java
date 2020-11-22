@@ -1,14 +1,15 @@
 package com.example.proyectoicm;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,37 +21,34 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class ClientesActivity extends AppCompatActivity {
+    LayoutInflater layoutInflater;
+    View showInput;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-    FloatingActionButton fabagregar;
     Context context;
-    ArrayList<String> clientlist = new ArrayList<>();
+    ArrayList<dataClient> list = new ArrayList<>();
     RecyclerView recyclerView;
-
     AdapterCliente adapterCliente;
-
-
-
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientes);
 
         recyclerView = findViewById(R.id.recyclerClientes);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        showdata();
+        showData();
     }
 
-    private void showdata() {
+    private void showData() {
         database.child("cliente").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 showListener(snapshot);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -58,15 +56,12 @@ public class ClientesActivity extends AppCompatActivity {
     }
 
     private void showListener(DataSnapshot snapshot) {
-        clientlist.clear();
+        list.clear();
         for (DataSnapshot item : snapshot.getChildren()){
             dataClient cliente = item.getValue(dataClient.class);
-            //String kk = item.child("nombre").getValue().toString();
-            clientlist.add(cliente.getCliente());  //???????????????????????????????????????????/
-            //clientlist.add(kk);
+            list.add(cliente);
         }
-        adapterCliente= new AdapterCliente(clientlist);
+        adapterCliente = new AdapterCliente(context, list);
         recyclerView.setAdapter(adapterCliente);
-
     }
 }
