@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
 
+import javax.security.auth.login.LoginException;
+
 public class VerCActivity extends AppCompatActivity {
     EditText input_min, input_max;
     TextView ingresos;
@@ -60,6 +63,7 @@ public class VerCActivity extends AppCompatActivity {
     SimpleDateFormat horaDF = new SimpleDateFormat("HH:mm");
 
     Date fecha_min, fecha_max;
+    int TOTAL;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +74,14 @@ public class VerCActivity extends AppCompatActivity {
         input_min = findViewById(R.id.input_min);
         input_max = findViewById(R.id.input_max);
         ingresos = findViewById(R.id.tvingresos);
-        int sum = 0 ;
-        for (int i = 0 ; i < ingresostot.size(); i++){
-            sum += ingresostot.get(i);
-        }
+        //ingresos.setText(String.valueOf(TOTAL));
 
-        ingresos.setText(ingresostot.toString());
+        //ingresos.setText(ingresostot.toString());
+        Log.i("tot", "onCreate: AQUI DEBERIA ESTAR "+ ingresostot);
+
+        
+
+
 
         btnmin = findViewById(R.id.btnmin);
         btnmax = findViewById(R.id.btnmax);
@@ -278,8 +284,11 @@ public class VerCActivity extends AppCompatActivity {
             list.add(cliente);
             ids.add(item.getKey().toString());
             ingresostot.add(cliente.getCosto());
+            Log.i("costo", "entroe"+ingresostot);
 
         }
+        Log.i("TOTAL", "deberia de dar el arreglo FINAL: "+ ingresostot);
+
         adapterItem = new AdapterItem(context, list, ids);
         recyclerView.setAdapter(adapterItem);
     }

@@ -13,11 +13,11 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="349dp"
+            android:layout_height="340dp"
             android:layout_marginBottom="50dp"
             android:contentDescription="@string/logo"
-            app:srcCompat="@drawable/skype" />
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/textView"

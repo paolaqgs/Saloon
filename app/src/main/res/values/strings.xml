@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Saloon </string>
+    <string name="app_name">Salon</string>
     <string name="bienvenid">Bienvenid@</string>
     <string name="ver_citas">Citas</string>
 
@@ -15,18 +15,23 @@
     <string name="tarjeta">Tarjeta</string>
     <string name="efectivo">Efectivo</string>
     <string name="guardar">Guardar</string>
-    <string name="totals">Total: $</string>
+    <string name="totals">Total: $ </string>
     <string name="hr">Hr</string>
     <string name="cita">Cita</string>
     <string name="editar_cita">Editar Cita</string>
     <string name="forma_de_pago">Forma de pago</string>
     <string name="actualizar">Actualizar</string>
     <string name="buscar">Buscar</string>
-    <string name="ingresos">Ingresos: $</string>
+    <string name="ingresos">Ingresos: $ </string>
     <string name="logo">logo</string>
-    <string name="total">Total</string>
-    <string name="nombre">Nombre</string>
     <string name="icono_borrar">icono borrar</string>
     <string name="icono_editar">icono editar</string>
     <string name="icono_cel">icono cel</string>
+    <string name="min">Min</string>
+    <string name="max">Max</string>
+    <string name="boton_flotante_agregar_cita">boton flotante agregar cita</string>
+    <string name="nombre">Nombre</string>
+    <string name="total">Total</string>
+    <string name="_0">0</string>
+
 </resources>

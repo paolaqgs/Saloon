@@ -5,20 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:theme="@style/Theme.Proyectoicm">
+    android:theme="@style/Theme.Proyectoicm"
+    android:forceDarkAllowed="false">
 
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/white"
+        android:layout_margin="20dp"
+        android:background="#F2F2F2"
         android:orientation="vertical">
 
         <ImageView
@@ -34,8 +29,6 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/clientes"
-            android:textColor="@color/black"
-            android:textColorHint="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>

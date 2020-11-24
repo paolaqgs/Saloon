@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F2F2F2"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -18,7 +20,8 @@
 
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,13 +35,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:enabled="false"
-                    android:hint="Min" />
+                    android:hint="@string/min"
+                    android:importantForAutofill="no" />
 
                 <Button
                     android:id="@+id/btnmin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fecha"
+                    android:textColor="#FFFFFF"
                     app:backgroundTint="#D9725B" />
 
             </LinearLayout>
@@ -55,13 +60,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:enabled="false"
-                    android:hint="Max" />
+                    android:hint="@string/max"
+                    android:importantForAutofill="no" />
 
                 <Button
                     android:id="@+id/btnmax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fecha"
+                    android:textColor="#FFFFFF"
                     app:backgroundTint="#D9725B" />
             </LinearLayout>
         </LinearLayout>
@@ -73,33 +80,29 @@
             android:layout_gravity="end"
             android:enabled="false"
             android:text="@string/buscar"
+            android:textColor="#FFFFFF"
             app:backgroundTint="#F2B872" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:text="@string/ingresos"
-                android:textSize="18sp"
+                android:textColor="#000000"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvingresos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:gravity="center"
                 android:hint="cambia"
-                android:textSize="18sp"
+                android:textColor="#000000"
+                android:textSize="22sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -127,7 +130,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:contentDescription="boton flotante agregar cita"
+        android:contentDescription="@string/boton_flotante_agregar_cita"
         android:src="@android:drawable/ic_input_add"
         android:tint="@android:color/white"
         app:backgroundTint="#6872A6" />

@@ -52,10 +52,12 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
     Date fecha_seleccionada;
     Date hora_seleccionada;
 
+
     public AdapterItem(Context context, ArrayList<dataClient> dataClientArrayList, ArrayList<String> idsArrayList) {
         this.context = this.context;
         this.dataClientArrayList = dataClientArrayList;
         this.idsArrayList = idsArrayList;
+
     }
 
     @NonNull
@@ -74,6 +76,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
             public void onClick(View view) {
                 final DialogPlus dialogPlus = DialogPlus.newDialog(holder.tvnombre.getContext())
                         .setContentHolder(new ViewHolder(R.layout.dialogcontent))
+                        .setPadding(40,0,40,10)
                         .create();
                 View myview = dialogPlus.getHolderView();
                 EditText Nombre = myview.findViewById(R.id.editnombre);
@@ -201,6 +204,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
             tvfecha = itemView.findViewById(R.id.tvfecha);
             tvhora = itemView.findViewById(R.id.tvhora);
 
+
             editbtnfecha = itemView.findViewById(R.id.editbtnfecha);
             editbtnhora = itemView.findViewById(R.id.editbtnhora);
 
@@ -216,6 +220,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
             tvfpago.setText(dataClient.getFormapago());
             tvfecha.setText(dataClient.getFecha());
             tvhora.setText(dataClient.getHora());
+
         }
     }
 }

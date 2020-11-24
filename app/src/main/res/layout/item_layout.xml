@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:orientation="vertical">
+    android:layout_margin="10dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2D90A6"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:background="#539EC1"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvcita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="@string/cita"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
@@ -24,18 +30,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Nombre" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/nombre"
+            android:textColorLink="#89CFF0"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvservicio"
-            android:layout_width="match_parent"
+            android:layout_width="378dp"
             android:layout_height="wrap_content"
-            android:text="Servicio" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/servicio"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <TextView
                 android:id="@+id/tvfecha"
@@ -43,13 +58,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="110dp"
                 android:layout_marginRight="110dp"
-                android:text="Fecha" />
+                android:text="@string/fecha"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvhora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hora" />
+                android:text="@string/hora"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,6 +75,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/hr"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
 
@@ -66,32 +84,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:text="@string/totals"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvtotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="@string/_0"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvfpago"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/forma_de_pago" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/forma_de_pago"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:paddingBottom="10dp"
             android:orientation="horizontal">
 
             <ImageView

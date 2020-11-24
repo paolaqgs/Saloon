@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/logo"
-                app:srcCompat="@drawable/skype" />
+                app:srcCompat="@drawable/splash" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,7 +51,8 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/logo" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
