@@ -63,7 +63,6 @@ public class VerCActivity extends AppCompatActivity {
     SimpleDateFormat horaDF = new SimpleDateFormat("HH:mm");
 
     Date fecha_min, fecha_max;
-    int TOTAL;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +77,7 @@ public class VerCActivity extends AppCompatActivity {
 
         //ingresos.setText(ingresostot.toString());
         Log.i("tot", "onCreate: AQUI DEBERIA ESTAR "+ ingresostot);
+
 
         
 
@@ -284,10 +284,15 @@ public class VerCActivity extends AppCompatActivity {
             list.add(cliente);
             ids.add(item.getKey().toString());
             ingresostot.add(cliente.getCosto());
-            Log.i("costo", "entroe"+ingresostot);
-
         }
-        Log.i("TOTAL", "deberia de dar el arreglo FINAL: "+ ingresostot);
+        Log.i("TOTAL", "deberia de dar el arreglo FINAL: "+ ingresostot.size());
+
+        int sum = 0;
+        for (int x : ingresostot ) {
+            sum += x;
+        }
+
+        ingresos.setText(String.valueOf(sum));
 
         adapterItem = new AdapterItem(context, list, ids);
         recyclerView.setAdapter(adapterItem);
