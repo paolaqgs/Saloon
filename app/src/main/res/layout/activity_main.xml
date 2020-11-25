@@ -50,5 +50,16 @@
             android:textColor="#F2F2F2"
             android:textStyle="bold"
             app:backgroundTint="#F2B872" />
+
+        <Button
+            android:id="@+id/catalogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="20dp"
+            android:text="@string/servicios"
+            android:textColor="#F2F2F2"
+            android:textStyle="bold"
+            app:backgroundTint="#D9725B" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

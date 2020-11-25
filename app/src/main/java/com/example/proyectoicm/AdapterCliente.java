@@ -17,7 +17,7 @@ public class AdapterCliente extends RecyclerView.Adapter<AdapterCliente.ItemView
     Context context;
 
     public AdapterCliente(Context context, ArrayList<dataClient> dataClientArrayList) {
-        this.context = this.context;
+        this.context = context;
         this.dataClientArrayList = dataClientArrayList;
     }
 

@@ -73,16 +73,6 @@ public class VerCActivity extends AppCompatActivity {
         input_min = findViewById(R.id.input_min);
         input_max = findViewById(R.id.input_max);
         ingresos = findViewById(R.id.tvingresos);
-        //ingresos.setText(String.valueOf(TOTAL));
-
-        //ingresos.setText(ingresostot.toString());
-        Log.i("tot", "onCreate: AQUI DEBERIA ESTAR "+ ingresostot);
-
-
-        
-
-
-
         btnmin = findViewById(R.id.btnmin);
         btnmax = findViewById(R.id.btnmax);
         btnbuscar = findViewById(R.id.btnbuscar);
@@ -143,8 +133,6 @@ public class VerCActivity extends AppCompatActivity {
                 });
             }
         });
-
-
         fabagregar.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -153,18 +141,12 @@ public class VerCActivity extends AppCompatActivity {
             }
         });
         showData();
-
-
-
     }
 
     EditText etnombre, etcosto, etfecha, ethora;
     Button btnfecha, btnhora,  btnguardar;
     RadioGroup rb_group, rb2_group;
     RadioButton radioButton, radioButton2;
-
-
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void inputData() {
         builderAlert = new AlertDialog.Builder(context).create();
@@ -269,10 +251,8 @@ public class VerCActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
     }
 
     private void showListener(DataSnapshot snapshot) {
@@ -285,15 +265,11 @@ public class VerCActivity extends AppCompatActivity {
             ids.add(item.getKey().toString());
             ingresostot.add(cliente.getCosto());
         }
-        Log.i("TOTAL", "deberia de dar el arreglo FINAL: "+ ingresostot.size());
-
         int sum = 0;
         for (int x : ingresostot ) {
             sum += x;
         }
-
         ingresos.setText(String.valueOf(sum));
-
         adapterItem = new AdapterItem(context, list, ids);
         recyclerView.setAdapter(adapterItem);
     }

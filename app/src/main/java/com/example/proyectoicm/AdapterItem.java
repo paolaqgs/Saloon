@@ -41,7 +41,7 @@ import java.util.Map;
 
 public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder> {
     Context context;
-    AlertDialog builderAlert;
+    //AlertDialog builderAlert;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     ArrayList<dataClient> dataClientArrayList;
     ArrayList<String> idsArrayList;
@@ -54,7 +54,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
 
 
     public AdapterItem(Context context, ArrayList<dataClient> dataClientArrayList, ArrayList<String> idsArrayList) {
-        this.context = this.context;
+        this.context = context;
         this.dataClientArrayList = dataClientArrayList;
         this.idsArrayList = idsArrayList;
 
@@ -150,6 +150,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Ocurrio un error", Toast.LENGTH_LONG).show();
                                 dialogPlus.dismiss();
                             }
                         });
@@ -160,7 +161,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ItemViewHolder
                     public void onClick(View view) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(holder.tvnombre.getContext());
                         builder.setTitle("FECHA");
-                        builder.setMessage("porque no entra esta pendejada?");
+                        builder.setMessage("porque no entra ??");
                     }
                 });
             }

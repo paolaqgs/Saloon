@@ -33,5 +33,11 @@
     <string name="nombre">Nombre</string>
     <string name="total">Total</string>
     <string name="_0">0</string>
+    <string name="descripcion">Descripción</string>
+    <string name="costo">Costo: $</string>
+    <string name="boton_flotante_agregar_servicio">boton flotante agregar servicio</string>
+    <string name="servicios">Servicios</string>
+    <string name="nuevo_servicio">Nuevo Servicio</string>
+    <string name="editar_servicio">Editar Servicio</string>
 
 </resources>
