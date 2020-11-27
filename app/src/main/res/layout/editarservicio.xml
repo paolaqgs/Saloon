@@ -15,7 +15,8 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/editar_servicio"
-        android:textColor="#000000"
+        android:background="@color/moradonazul"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
 

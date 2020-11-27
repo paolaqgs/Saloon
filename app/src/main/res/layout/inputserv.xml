@@ -13,8 +13,9 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/nuevo_servicio"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:textSize="20sp"
+        android:background="@color/naranja_rojo"
         android:textStyle="bold" />
 
     <EditText

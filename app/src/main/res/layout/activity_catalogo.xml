@@ -63,6 +63,6 @@
         android:contentDescription="@string/boton_flotante_agregar_servicio"
         android:src="@android:drawable/ic_input_add"
         android:tint="@android:color/white"
-        app:backgroundTint="#6872A6" />
+        app:backgroundTint="@color/naranja_rojo" />
 
 </RelativeLayout>

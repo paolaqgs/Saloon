@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -145,8 +147,13 @@ public class VerCActivity extends AppCompatActivity {
 
     EditText etnombre, etcosto, etfecha, ethora;
     Button btnfecha, btnhora,  btnguardar;
-    RadioGroup rb_group, rb2_group;
-    RadioButton radioButton, radioButton2;
+    RadioGroup  rb2_group;
+    RadioButton radioButton2;
+
+    Spinner spinner;
+    ArrayList<String> listservicios = new ArrayList<>();
+    //ArrayList<String> idsServicios = new ArrayList<>();
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void inputData() {
         builderAlert = new AlertDialog.Builder(context).create();
@@ -160,8 +167,9 @@ public class VerCActivity extends AppCompatActivity {
         btnfecha = showInput.findViewById(R.id.btnfecha);
         btnhora = showInput.findViewById(R.id.btnhora);
         btnguardar = showInput.findViewById(R.id.btnguardar);
-        rb_group = showInput.findViewById(R.id.rb_group);
         rb2_group = showInput.findViewById(R.id.rg2_group);
+        spinner = showInput.findViewById(R.id.spinner);
+        showDataSpinner();
         builderAlert.show();
 
         btnguardar.setOnClickListener(new View.OnClickListener(){
@@ -170,6 +178,15 @@ public class VerCActivity extends AppCompatActivity {
                 String nombre = etnombre.getText().toString();
                 String costo  = etcosto.getText().toString();
                 String date = etfecha.getText().toString();
+
+                String SPINNER = spinner.getSelectedItem().toString();
+                int spinnerID = (int) spinner.getSelectedItemId(); //id del spinner seleccionado
+                //String IDSERVICIO = idsServicios.get(spinnerID); //id del del seccionado
+
+                //Log.i("ID", "id "+spinnerID);
+
+
+
                 if (nombre.isEmpty()) {
                     etnombre.setError("Llena todos los campos");
                     etnombre.requestFocus();
@@ -180,15 +197,13 @@ public class VerCActivity extends AppCompatActivity {
                     etfecha.setError("Llena todos los campos");
                     etfecha.requestFocus();
                 }else {
-                    int servicio = rb_group.getCheckedRadioButtonId();
-                    radioButton = showInput.findViewById(servicio);
                     int total = Integer.parseInt(costo);
                     int formapago = rb2_group.getCheckedRadioButtonId();
                     radioButton2 = showInput.findViewById(formapago);
                     String KEY = database.child("cliente").push().getKey(); //LLAVE
                     database.child("cliente").child(KEY).setValue(new dataClient(
                             nombre,
-                            radioButton.getText().toString(),
+                            SPINNER, //EL SERVICIO
                             radioButton2.getText().toString(),
                             total,
                             etfecha.getText().toString(),
@@ -242,8 +257,28 @@ public class VerCActivity extends AppCompatActivity {
         });
     }
 
+    private void showDataSpinner() { //llena spinner
+        database.child("catalogoS").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listservicios.clear();
+                //idsServicios.clear();
+                for (DataSnapshot item : snapshot.getChildren()){
+                    listservicios.add(item.child("servicio").getValue(String.class)); //nombre servicio
+                    //idsServicios.add(item.child("costo").getKey()); //LLAVE DEL SERVICIO
 
-    private void showData() {
+                }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(VerCActivity.this, R.layout.spinner, listservicios);
+                spinner.setAdapter(arrayAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+
+    private void showData() { //jala info guardada
         database.child("cliente").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -255,7 +290,7 @@ public class VerCActivity extends AppCompatActivity {
         });
     }
 
-    private void showListener(DataSnapshot snapshot) {
+    private void showListener(DataSnapshot snapshot) { //recorre ramas y devuelve hijos
         list.clear();
         ids.clear();
         ingresostot.clear();

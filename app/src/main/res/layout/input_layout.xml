@@ -13,8 +13,9 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/nueva_cita"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:textSize="20sp"
+        android:background="@color/naranja_rojo"
         android:textStyle="bold" />
 
     <EditText
@@ -33,26 +34,11 @@
         android:textColor="#000000"
         android:textStyle="bold" />
 
-    <RadioGroup
-        android:id="@+id/rb_group"
+    <Spinner
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"/>
 
-        <RadioButton
-            android:id="@+id/rbcorte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/corte_de_pelo" />
-
-        <RadioButton
-            android:id="@+id/rbtratamiento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tratamiento_capilar" />
-
-    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -135,8 +121,11 @@
             android:id="@+id/rb2_tarjeta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="90dp"
             android:checked="true"
             android:text="@string/tarjeta" />
+
 
         <RadioButton
             android:id="@+id/rb2_efectivo"
