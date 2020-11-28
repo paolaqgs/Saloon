@@ -123,14 +123,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="90dp"
+            android:button="@drawable/radioboton_custome"
             android:checked="true"
             android:text="@string/tarjeta" />
-
 
         <RadioButton
             android:id="@+id/rb2_efectivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:button="@drawable/radioboton_custome"
             android:text="@string/efectivo" />
     </RadioGroup>
 

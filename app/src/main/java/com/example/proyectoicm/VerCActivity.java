@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -152,7 +153,7 @@ public class VerCActivity extends AppCompatActivity {
 
     Spinner spinner;
     ArrayList<String> listservicios = new ArrayList<>();
-    //ArrayList<String> idsServicios = new ArrayList<>();
+    ArrayList<Integer> idsServicios = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void inputData() {
@@ -172,6 +173,7 @@ public class VerCActivity extends AppCompatActivity {
         showDataSpinner();
         builderAlert.show();
 
+
         btnguardar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -181,11 +183,6 @@ public class VerCActivity extends AppCompatActivity {
 
                 String SPINNER = spinner.getSelectedItem().toString();
                 int spinnerID = (int) spinner.getSelectedItemId(); //id del spinner seleccionado
-                //String IDSERVICIO = idsServicios.get(spinnerID); //id del del seccionado
-
-                //Log.i("ID", "id "+spinnerID);
-
-
 
                 if (nombre.isEmpty()) {
                     etnombre.setError("Llena todos los campos");
@@ -262,11 +259,9 @@ public class VerCActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listservicios.clear();
-                //idsServicios.clear();
                 for (DataSnapshot item : snapshot.getChildren()){
                     listservicios.add(item.child("servicio").getValue(String.class)); //nombre servicio
-                    //idsServicios.add(item.child("costo").getKey()); //LLAVE DEL SERVICIO
-
+                    Log.i("spinner", "onDataChange: " + item.child("costo").getValue());
                 }
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(VerCActivity.this, R.layout.spinner, listservicios);
                 spinner.setAdapter(arrayAdapter);
@@ -276,6 +271,7 @@ public class VerCActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
     private void showData() { //jala info guardada
